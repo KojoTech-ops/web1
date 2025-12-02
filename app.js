@@ -116,7 +116,7 @@ payBtn.addEventListener("click", async () => {
   const payload = { bundleId, phone, qty };
 
   try{
-    const res = await fetch("http://localhost:3000/api/pay", {
+    const res = await fetch("https://web-backend-dp.onrender.com/api/pay", {
       method:"POST",
       headers:{ "Content-Type":"application/json" },
       body:JSON.stringify(payload)
@@ -152,3 +152,4 @@ payBtn.addEventListener("click", async () => {
     handler.openIframe();
   }catch(err){ alert("Network error"); console.error(err);}
 });
+
