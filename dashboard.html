@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>KojoTech Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <!-- Toggle button for mobile -->
+<button id="sidebarToggle" class="sidebar-toggle">☰</button>
+
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <h2>KojoTech</h2>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Payments</a></li>
+          <li><a href="#">Bundles</a></li>
+        </ul>
+      </nav>
+
+      <!-- ✅ Stats moved into sidebar -->
+      <div class="stats-panel">
+        <div class="stat">
+          <h4>Total Payments</h4>
+          <p id="totalPayments">0</p>
+        </div>
+        <div class="stat">
+          <h4>Total Bundles Sold</h4>
+          <p id="totalBundles">0</p>
+        </div>
+        <div class="stat">
+          <h4>Total Revenue (GHS)</h4>
+          <p id="totalRevenue">0.00</p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main Panel -->
+    <main class="dashboard-main">
+
+      <div id="lastPaymentBanner"></div>
+
+      <!-- Bundle Section -->
+      <section class="bundle-section">
+        <h3>Select Bundle</h3>
+        <select id="bundle">
+          <option value="b1">150MB (1 day) - GHS1.50</option>
+          <option value="b2">500MB (3 days) - GHS3.50</option>
+          <option value="b3">1.5GB (7 days) - GHS7.00</option>
+          <option value="b4">3GB (14 days) - GHS12.00</option>
+          <option value="b5">5GB (30 days) - GHS18.00</option>
+        </select>
+
+        <input type="text" id="phone" placeholder="Enter phone number">
+        <span id="provider"></span>
+        <input type="number" id="qty" value="1" min="1">
+        <button id="payBtn">Pay Now</button>
+      </section>
+
+      <!-- Recent Payments -->
+      <section class="recent-payments">
+        <h3>Recent Payments</h3>
+        <div id="recentPayments"></div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if(localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+  
+</body>
+
+
+</html>

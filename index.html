@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KojoTech - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="hero-bg">
+    <div class="auth-container">
+      <!-- Brand -->
+      <h1 class="brand">KojoTech</h1>
+      <p class="tagline">Fast • Secure • Instant Data</p>
+
+      <!-- Auth Box -->
+      <div class="auth-box">
+        <!-- Tabs -->
+        <div class="tabs">
+          <span class="tab active" id="loginTab">Login</span>
+          <span class="tab" id="signupTab">Sign Up</span>
+        </div>
+
+        <!-- Forms wrapper -->
+        <div class="forms-wrapper">
+          <!-- Login Form -->
+          <div class="form form-active" id="loginForm">
+            <input type="text" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="loginBtn">Login</button>
+          </div>
+
+          <!-- Signup Form -->
+          <div class="form" id="signupForm">
+            <input type="text" id="signupName" placeholder="Full Name">
+            <input type="text" id="signupEmail" placeholder="Email">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <button id="signupBtn">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background floating shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

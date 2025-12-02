@@ -1,0 +1,264 @@
+/* ============================= */
+/* 1. Global Settings           */
+/* ============================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: white;
+}
+
+/* ============================= */
+/* 2. Dashboard Layout           */
+/* ============================= */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============================= */
+/* 3. Sidebar                    */
+/* ============================= */
+.dashboard-sidebar {
+  width: 260px;
+  position: fixed;       /* stays on screen */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #081022;
+  padding: 20px;
+  border-right: 2px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;     /* scroll if sidebar content too long */
+}
+
+/* Sidebar title */
+.dashboard-sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Sidebar nav links */
+.dashboard-sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-sidebar li {
+  margin: 0;
+}
+
+.dashboard-sidebar a {
+  display: block;
+  padding: 12px 15px;
+  border-radius: 8px;
+  background: #0d1a33;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.dashboard-sidebar a:hover {
+  background: #152a55;
+  transform: scale(1.02);
+}
+
+.dashboard-sidebar a.active {
+  background: #1e3a70;
+  font-weight: bold;
+}
+
+/* ============================= */
+/* 4. Stats Panel in Sidebar     */
+/* ============================= */
+.stats-panel {
+  background: #0d1a33;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat {
+  background: #112044;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.stat h4 {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.stat p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ============================= */
+/* 5. Main Panel                 */
+/* ============================= */
+.dashboard-main {
+  flex: 1;
+  padding: 30px;
+  margin-left: 260px; /* match sidebar width */
+}
+
+/* Last payment banner */
+#lastPaymentBanner {
+  background: green;
+  color: white;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  display: none;
+}
+
+/* ============================= */
+/* 6. Bundle Section             */
+/* ============================= */
+.bundle-section {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bundle-section input,
+.bundle-section select,
+.bundle-section button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.bundle-section select:hover,
+.bundle-section input:hover {
+  border: 1px solid #1e90ff;
+  box-shadow: 0 0 10px rgba(30,144,255,0.4);
+}
+
+.bundle-section button {
+  background-color: #081022;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.bundle-section button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(30,144,255,0.4);
+}
+
+/* ============================= */
+/* 7. Recent Payments            */
+/* ============================= */
+.recent-payments {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.recent-payment {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 5px solid gray;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.recent-payment:hover {
+  background: #e6f0ff;
+}
+
+.recent-payment.MTN { border-color: #ffcc00; }
+.recent-payment.Vodafone { border-color: #e60000; }
+.recent-payment.AirtelTigo { border-color: #0066cc; }
+
+/* ============================= */
+/* 8. Responsive                 */
+/* ============================= */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+  /* Sidebar toggle button */
+.sidebar-toggle {
+  display: none; /* hidden on desktop */
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background: #081022;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: block; /* show toggle on mobile */
+  }
+
+  .dashboard-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* hidden by default */
+    width: 260px;
+    height: 100vh;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+
+  .dashboard-sidebar.active {
+    left: 0; /* slide in */
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+
+}

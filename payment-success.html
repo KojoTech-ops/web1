@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <title>Payment Result</title>
+  <style>
+    body { font-family: sans-serif; padding: 30px; background: #081022; color: white; }
+    button { padding: 10px 20px; margin-top: 20px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2 id="status">Verifying payment…</h2>
+  <div id="details"></div>
+  <button id="homeBtn">Go Back Home</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const reference = params.get("reference");
+    const statusEl = document.getElementById("status");
+    const detailsEl = document.getElementById("details");
+    const homeBtn = document.getElementById("homeBtn");
+
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+
+    async function verify(){
+      try {
+        const res = await fetch("http://localhost:3000/api/verify?reference=" + reference);
+        const data = await res.json();
+
+        if(data.success){
+          statusEl.textContent = "✅ Payment confirmed";
+          detailsEl.textContent = "Data delivered. Ref: " + data.reference;
+
+          // Store last payment in localStorage (optional)
+          localStorage.setItem("lastPayment", JSON.stringify({reference: data.reference, status: "success"}));
+        } else {
+          statusEl.textContent = "❌ Payment failed";
+          detailsEl.textContent = data.message;
+        }
+      } catch(err){
+        statusEl.textContent = "❌ Verification error";
+        detailsEl.textContent = "Network or server problem.";
+        console.error(err);
+      }
+    }
+
+    verify();
+  </script>
+</body>
+</html>
